@@ -12,14 +12,13 @@ class Convertor(val from :String, val to:String, var num:String){
     fun getUnits(s:String = ""): Map<String, Pair<ArrayList<String>, ArrayList<Int>>> {
         if(s == "") return units
         return units.filter {it.key == s }
-       }
+    }
 
     /**
      * if given parms are valid
      **/
 
     private fun isValidNum(): Boolean = num.matches("([+-]?(?=\\.\\d|\\d)(?:\\d+)?(?:\\.?\\d*))(?:[eE]([+-]?\\d+))?".toRegex())
-
     var fromType = ""
     var fromIndex = -1
     var toType   = ""
@@ -55,6 +54,7 @@ class Convertor(val from :String, val to:String, var num:String){
     private fun sameTypeConvert() {
         while(fromIndex != toIndex){
             //Convert
+            
         }
     }
 }
