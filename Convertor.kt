@@ -1,15 +1,18 @@
-class Convertor(val from :String, val to:String, var num:String){
+class Convertor(private val from :String, private val to:String, var num:String){
     /**
      * All options and units and values for them
      * **/
     private val units = mapOf(
-        "Length" to Pair(arrayListOf("km","m","cm","mm"),arrayListOf(1000,100,10)),
-        "Time" to Pair(arrayListOf("year","week","day","hr","min","sec"), arrayListOf(52,7,24,60,60))    
+        "Length" to Pair(arrayListOf("km","m","cm","mm"),arrayListOf(1000.0,100.0,10.0)),
+        "Time" to Pair(arrayListOf("year","week","day","hr","min","sec"), arrayListOf(52.0,7.0,24.0,60.0,60.0)),
+        "Mass" to Pair(arrayListOf("tonne","kg","g"), arrayListOf(1000.0,1000.0)),
+        "Area" to Pair(arrayListOf("km²","m²","cm²","mm²"), arrayListOf(1e+6,1e+5,100.0)),
+        "Volume" to Pair(arrayListOf("km³","m³","cm³","mm³"), arrayListOf(1e+9,1e+6,1000.0))
     )
     /**
      * Get All units of filtered
      * **/
-    fun getUnits(s:String = ""): Map<String, Pair<ArrayList<String>, ArrayList<Int>>> {
+    fun getUnits(s:String = ""): Map<String, Pair<ArrayList<String>, ArrayList<Double>>> {
         if(s == "") return units
         return units.filter {it.key == s }
     }
@@ -44,8 +47,7 @@ class Convertor(val from :String, val to:String, var num:String){
         if(fromIndex == -1 || toIndex == -1) return "WRONG UNITS"
 
         //same type
-        if(fromType == toType) sameTypeConvert()
-        else notSameTypeConvert()
+        if(fromType == toType) sameTypeConvert() else num = notSameTypeConvert()
         return num
     }
 
@@ -64,6 +66,5 @@ class Convertor(val from :String, val to:String, var num:String){
             }
         }
     }
-
-    private fun notSameTypeConvert():String = "STILL IN PRODUCTION"
+    private fun notSameTypeConvert():String = "FEATURE STILL IN PRODUCTION"
 }
