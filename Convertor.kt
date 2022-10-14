@@ -69,18 +69,3 @@ class Convertor(val from :String, val to:String, var num:String){
 
     }
 }
-
-fun main(){
-    print(Convertor("km","cm","1").convert())
-}
-
-/*   val indexOfType = options.indexOf(type)
-               val indexFrom:Int = units[indexOfType].indexOf(from)
-               var indexTo = units[indexOfType].indexOf(to)
-               if(indexTo > units[indexOfType].size) indexFrom - 1
-
-               while(indexFrom != indexTo){
-                   num = (num.toDouble() *  values[indexOfType][indexTo]).toString()
-                   indexTo--
-               }*/
-
