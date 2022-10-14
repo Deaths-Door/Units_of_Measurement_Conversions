@@ -1,4 +1,4 @@
-class Convertor(private val from :String, private val to:String, var num:String){
+class Convertor(private val from :String, private val to:String, var num:Any,var workingType: Int = 0){
     /**
      * All options and units and values for them
      * **/
@@ -25,8 +25,8 @@ class Convertor(private val from :String, private val to:String, var num:String)
     private var toType   = ""
     private var toIndex  = -1
 
-    private fun isValidNum(): Boolean = num.matches("([+-]?(?=\\.\\d|\\d)(?:\\d+)?(?:\\.?\\d*))(?:[eE]([+-]?\\d+))?".toRegex())
-    fun convert(): String {
+    private fun isValidNum(): Boolean = num.toString().matches("([+-]?(?=\\.\\d|\\d)(?:\\d+)?(?:\\.?\\d*))(?:[eE]([+-]?\\d+))?".toRegex())
+    fun convert(): Any {
         if(!isValidNum()) return "INVALID NUMBER"
         if(from == to) return num
 
@@ -48,7 +48,9 @@ class Convertor(private val from :String, private val to:String, var num:String)
 
         //same type
         if(fromType == toType) sameTypeConvert() else num = notSameTypeConvert()
-        return num
+
+        //working out there
+        return if(workingType == 0) num else Pair(num,workingOut)
     }
 
     private fun sameTypeConvert() {
@@ -57,14 +59,28 @@ class Convertor(private val from :String, private val to:String, var num:String)
         while(fromIndex != toIndex){
             //Convert
             if(fromIndex < toIndex){
-                num = (num.toDouble() * arr[toIndex - 1]).toString()
+                num = (num.toString().toDouble() * arr[toIndex - 1]).toString()
+             //   buildWorking(num,units[fromType]!!.first[toIndex - 1])
                 toIndex--
             }
             else{
-                num = (num.toDouble() / arr[fromIndex - 1]).toString()
+                val x = num
+                num = (num.toString().toDouble() / arr[fromIndex - 1]).toString()
+                //buildWorking(x,units[fromType]!!.first[toIndex - 1],false)
                 fromIndex--
             }
         }
     }
+
+    //working out
+    var workingOut = """
+                       Working Out
+                       
+                       
+                    """.trimIndent()
+ //   private fun buildWorking(n: Any, unit: String, times: Boolean = true,n2:Any = "") {
+   //     workingOut += if(workingType == 1) "$n$unit -> \n" else "$n$unit * $n2 = $num \n"
+  //  }
+
     private fun notSameTypeConvert():String = "FEATURE STILL IN PRODUCTION"
 }
