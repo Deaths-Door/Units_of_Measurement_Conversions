@@ -2,8 +2,10 @@ class Convertor(val from :String, val to:String, var num:String){
     /**
      * All options and units and values for them
      * **/
-    private val units = mapOf("Length" to Pair(arrayListOf("km","m","cm","mm"),arrayListOf(1000,100,10)))
-
+    private val units = mapOf(
+        "Length" to Pair(arrayListOf("km","m","cm","mm"),arrayListOf(1000,100,10)),
+        "Time" to Pair(arrayListOf("year","week","day","hr","min","sec"), arrayListOf(52,7,24,60,60))    
+    )
     /**
      * Get All units of filtered
      * **/
@@ -50,9 +52,7 @@ class Convertor(val from :String, val to:String, var num:String){
     private fun sameTypeConvert() {
         val arr = units[fromType]!!.second
         if(fromIndex > toIndex) arr.reverse()
-        var x = 1
         while(fromIndex != toIndex){
-            //TODO ADD CUSTOM MULTIPLY FUNCTION
             //Convert
             if(fromIndex < toIndex){
                 num = (num.toDouble() * arr[toIndex - 1]).toString()
@@ -65,22 +65,5 @@ class Convertor(val from :String, val to:String, var num:String){
         }
     }
 
-    private fun notSameTypeConvert() {
-
-    }
+    private fun notSameTypeConvert():String = "STILL IN PRODUCTION"
 }
-
-fun main(){
-    print(Convertor("km","cm","1").convert())
-}
-
-/*   val indexOfType = options.indexOf(type)
-               val indexFrom:Int = units[indexOfType].indexOf(from)
-               var indexTo = units[indexOfType].indexOf(to)
-               if(indexTo > units[indexOfType].size) indexFrom - 1
-
-               while(indexFrom != indexTo){
-                   num = (num.toDouble() *  values[indexOfType][indexTo]).toString()
-                   indexTo--
-               }*/
-
