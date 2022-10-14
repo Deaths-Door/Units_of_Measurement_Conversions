@@ -18,7 +18,7 @@ Get Working
 
 Types -> None , School Simple, School detailed 
 
-Value -> Numbers(1..3)      
+Value -> Numbers(0..2)      
 
 ```kotlin
   val x = Convertor(/*Parms*/, /*Working */)
