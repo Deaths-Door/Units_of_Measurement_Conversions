@@ -18,19 +18,19 @@ Get Working
 
 Types -> None , School Simple, School detailed 
 
-Value -> Numbers(1..3)      
+Value -> Numbers(0..2)      
 
 ```kotlin
   val x = Convertor(/*Parms*/, /*Working */)
   
   //gives no working
-  val x = Convertor("km","m","1", 1)
+  val x = Convertor("km","m","1")
   
   //school simple  
   /**
      1 km -> 1000m -> 10000cm
   **/
-  val x = Convertor("km","cm","1", 2)
+  val x = Convertor("km","cm","1", 1)
   
   //school detailes
   /**
