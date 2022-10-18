@@ -16,7 +16,6 @@ class Convertor(private val from :String, private val to:String, var num:Any,var
         if(s == "") return units
         return units.filter {it.key == s }
     }
-
     /**
      * if given parms are valid
      **/
@@ -73,11 +72,11 @@ class Convertor(private val from :String, private val to:String, var num:Any,var
     }
 
     //working out
-    var workingOut = """
-                       Working Out
-                       
-                       
-                    """.trimIndent()
+    var workingOut = if workingType == 1 { " " }
+                     else if(workingType == 2){ """
+        
+                                                """.trimIndent()
+                     }
  //   private fun buildWorking(n: Any, unit: String, times: Boolean = true,n2:Any = "") {
    //     workingOut += if(workingType == 1) "$n$unit -> \n" else "$n$unit * $n2 = $num \n"
   //  }
